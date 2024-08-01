@@ -15,9 +15,9 @@ public class TransactionController {
     @Autowired
     TransactionService transactionService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "Test";
+    @GetMapping("/transactions/{accountId}")
+    public ResponseEntity<?> getTransactionsByAccountId(@PathVariable int accountId) {
+        return transactionService.getTransactionsByAccountId(accountId);
     }
     @PostMapping("/transaction/{accountId}")
     public ResponseEntity<?> depositMoney(@PathVariable int accountId, @RequestBody Transaction transaction) {

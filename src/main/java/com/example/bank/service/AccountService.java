@@ -60,33 +60,4 @@ public class AccountService {
         List<Account> accounts = accountRepository.findByCustomerCustomerId(customerId);
         return accounts;
     }
-
-    public ResponseEntity<?> depositMoney(int accountId, float amount) {
-        if (amount <= 0) {
-            System.out.println("Error:  can not make a deposit of $" + amount);
-            return new ResponseEntity<>("Error:  can not make a deposit of $" + amount, HttpStatus.BAD_REQUEST);
-        }
-        Account account = getAccountByAccountId(accountId);
-        account.setBalance(account.getBalance() + amount);
-        updateAccount(account);
-        return new ResponseEntity<>(account, HttpStatus.OK);
-    }
-
-    public ResponseEntity<?> withdrawMoney(int accountId, float amount) {
-        if (amount <= 0) {
-            System.out.println("Error:  can not make a withdrawl of $" + amount);
-            return new ResponseEntity<>("Error:  can not make a withdrawl of $" + amount, HttpStatus.BAD_REQUEST);
-        }
-        Account account = getAccountByAccountId(accountId);
-        Float balance = account.getBalance();
-        if (amount > balance) {
-            System.out.println("Error:  can not make a withdrawl of more than the balance of your account.  Balance: " + balance + " Requested withdrawl: ");
-            return new ResponseEntity<>("Error:  can not make a withdrawl of more than the balance of your account.  Balance: " + balance + " Requested withdrawl: " + amount, HttpStatus.BAD_REQUEST);
-
-        } else {
-            account.setBalance(account.getBalance() - amount);
-            updateAccount(account);
-            return new ResponseEntity<>(account, HttpStatus.OK);
-        }
-    }
 }

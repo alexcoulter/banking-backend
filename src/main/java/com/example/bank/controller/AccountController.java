@@ -40,15 +40,15 @@ public class AccountController {
         return new ResponseEntity<>(account, HttpStatus.OK);
     }
 
-    @GetMapping("/account/{accountId}/deposit/{amount}")
-    public ResponseEntity<?> depositMoney(@PathVariable int accountId, @PathVariable Float amount) {
-          return accountService.depositMoney(accountId, amount);
-    }
-
-
-    @GetMapping("/account/{accountId}/withdraw/{amount}")
-    public ResponseEntity<?> withdrawMoney(@PathVariable int accountId, @PathVariable Float amount) {
-        return accountService.withdrawMoney(accountId, amount);
-    }
+//    @GetMapping("/account/{accountId}/deposit/{amount}")
+//    public ResponseEntity<?> depositMoney(@PathVariable int accountId, @PathVariable Float amount) {
+//          return accountService.depositMoney(accountId, amount);
+//    }
+//
+//
+//    @GetMapping("/account/{accountId}/withdraw/{amount}")
+//    public ResponseEntity<?> withdrawMoney(@PathVariable int accountId, @PathVariable Float amount) {
+//        return accountService.withdrawMoney(accountId, amount);
+//    }
 
 }

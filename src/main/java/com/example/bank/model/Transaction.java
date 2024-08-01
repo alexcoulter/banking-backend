@@ -27,6 +27,7 @@ public class Transaction {
     @Column(name = "transaction_time") @CreationTimestamp
     private LocalDateTime transactionTime;
     private String transactionType;
+    private String description;
     @ManyToOne
     @JoinColumn(name = "account_id", nullable = false)
     @JsonBackReference
@@ -82,12 +83,13 @@ public class Transaction {
         this.account = account;
     }
 
-    public Transaction(int transactionId, int accountId, float amount, LocalDateTime transactionTime, String transactionType, Account account) {
+    public Transaction(int transactionId, int accountId, float amount, LocalDateTime transactionTime, String transactionType, Account account, String description) {
         this.transactionTime = transactionTime;
         this.transactionId = transactionId;
         this.transactionType = transactionType;
         this.amount = amount;
 //        this.accountId = accountId;
         this.account = account;
+        this.description = description;
     }
 }
