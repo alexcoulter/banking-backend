@@ -1,8 +1,10 @@
 package com.example.bank.controller;
 
 // CustomerController.java
+import com.example.bank.DTO.CustomerDto;
 import com.example.bank.model.Customer;
 import com.example.bank.service.CustomerService;
+import com.example.bank.utils.DtoUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +25,11 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getAllCustomers() {
-        return customerService.getAllCustomers();
+    public List<CustomerDto> getAllCustomers() {
+        List<Customer> customers = customerService.getAllCustomers();
+        DtoUtils dtoUtils = new DtoUtils();
+        List<CustomerDto> customerDtoList = dtoUtils.toDtoList(customers);
+        return customerDtoList;
     }
 
     @GetMapping("/{id}")
